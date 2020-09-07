@@ -9,6 +9,7 @@ public class SpringbootjarApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SpringbootjarApplication.class, args);
 		System.out.println("Hello World");
+		System.out.println("Nama saya Syarif");
 	}
 
 }
