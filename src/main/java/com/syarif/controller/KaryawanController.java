@@ -41,5 +41,18 @@ public class KaryawanController {
 		return new ResponseEntity<>(hasil, HttpStatus.CREATED);
 	}
 	
-	
+	//menampilkan berdasarkan id
+		@GetMapping("/{id}")
+		public ResponseEntity<?> getKaryawanById(@PathVariable int id) {
+			Karyawan findKaryawan = karyawanRepository.findById(id).orElse(null);
+			String hasil = "";
+			if(findKaryawan==null) {
+				hasil = "id "+id+" tidak ditemukan";
+				return new ResponseEntity<>(hasil, HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<>(findKaryawan, HttpStatus.OK);
+		}
+		
+		
+		
 }
