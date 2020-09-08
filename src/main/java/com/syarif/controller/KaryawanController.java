@@ -33,6 +33,13 @@ public class KaryawanController {
 		return new ResponseEntity<>(karyawanRepository.findAll(), HttpStatus.OK);
 	}
 	
+	//menambah data karyawan
+	@PostMapping
+	public ResponseEntity<?> saveKaryawan(@RequestBody Karyawan karyawan){
+		String hasil = "Data berhasil ditambahkan";
+		karyawanRepository.save(karyawan);
+		return new ResponseEntity<>(hasil, HttpStatus.CREATED);
+	}
 	
 	
 }
