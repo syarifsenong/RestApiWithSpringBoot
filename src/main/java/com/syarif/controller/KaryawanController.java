@@ -53,6 +53,19 @@ public class KaryawanController {
 			return new ResponseEntity<>(findKaryawan, HttpStatus.OK);
 		}
 		
-		
+		@PutMapping("/{id}")
+		public ResponseEntity<?> updateKaryawan(@RequestBody Karyawan karyawan, @PathVariable int id){
+			Karyawan findKaryawan = karyawanRepository.findById(id).orElse(null);
+			String hasil = "";
+			if(findKaryawan==null) {
+				hasil = "id "+id+" tidak ditemukan";
+				return new ResponseEntity<>(hasil, HttpStatus.NOT_FOUND);
+			}
+			findKaryawan.setNama(karyawan.getNama());
+			findKaryawan.setAlamat(karyawan.getAlamat());
+			findKaryawan.setPosisi(karyawan.getPosisi());
+			Karyawan updateKaryawan = karyawanRepository.save(findKaryawan);
+			return new ResponseEntity<>(updateKaryawan, HttpStatus.OK);
+		}
 		
 }
