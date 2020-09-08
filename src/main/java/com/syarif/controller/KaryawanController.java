@@ -68,4 +68,31 @@ public class KaryawanController {
 			return new ResponseEntity<>(updateKaryawan, HttpStatus.OK);
 		}
 		
+
+		
+//		@DeleteMapping("/{id}")
+//		public ResponseEntity<?> deleteKaryawan(@PathVariable int id) {
+//			Karyawan findKaryawan = repo.findById(id).orElse(null);
+//			String hasil = "";
+//			if(findKaryawan==null) {
+//				hasil = "id "+id+" tidak ditemukan";
+//				return new ResponseEntity<>(hasil, HttpStatus.NOT_FOUND);
+//			}
+//			hasil = "id "+id+" berhasil dihapus";
+//			repo.deleteById(id);
+//			return new ResponseEntity<>(hasil, HttpStatus.ACCEPTED);
+//		}
+		@DeleteMapping("/{id}")
+		public String deleteKaryawan(@PathVariable int id) {
+			Karyawan findKaryawan = karyawanRepository.findById(id).orElse(null);
+			String hasil = "";
+			if(findKaryawan==null) {
+				hasil = "id "+id+" tidak ditemukan";
+				return hasil;
+			}
+			hasil = "id "+id+" berhasil dihapus";
+			karyawanRepository.deleteById(id);
+			return hasil;
+		}
+		
 }
